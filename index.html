@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <!--script TO add react -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+  </head>
+  <body>
+    WebSocket Visualisizer
+
+    <div id="root"></div>
+
+    <App></App>
+
+    <script>
+      /*
+           const e = React.createElement;
+           const [logs, setLogs] = React.useState("");
+
+           const domContainer = document.querySelector("#root");
+           ReactDOM.render(
+             e("div", { onClick: () => setState({ liked: true }) }, "Like"),
+             domContainer
+           );
+      */
+
+      const ws = new WebSocket("ws://localhost:8082");
+
+      ws.addEventListener("open", () => {
+        console.log("we are connected to the web socker");
+
+        ws.send("Hey, How are you doing ? ");
+      });
+
+      ws.addEventListener("message", (e) => {
+        console.log(e.data);
+      });
+    </script>
+  </body>
+</html>
